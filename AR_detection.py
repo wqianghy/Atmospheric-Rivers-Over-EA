@@ -75,10 +75,10 @@ def AR_detection_for_exp(exp):
             for regioni in ar_all:
                 
                 ari_centriod=regioni.centroid;
-                ari_grid=regioni.coords;                  # 该区域所有点的坐标
+                ari_grid=regioni.coords
                 ari_diameter=regioni.major_axis_length;
                 ari_orien=regioni.orientation;
-                ari_eccentricity=regioni.eccentricity;    # 离心率大于0.866
+                ari_eccentricity=regioni.eccentricity
                 a1=ari_centriod[0];
                 b1=ari_centriod[1];
                 a2=a1+ari_diameter*sp.cos(ari_orien);
