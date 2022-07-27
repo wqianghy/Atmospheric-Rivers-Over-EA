@@ -74,24 +74,29 @@ def AR_detection_for_exp(exp):
             
             for regioni in ar_all:
                 
-                ari_centriod=regioni.centroid;
+                ari_centriod=regioni.centroid
                 ari_grid=regioni.coords
-                ari_diameter=regioni.major_axis_length;
-                ari_orien=regioni.orientation;
+                ari_diameter=regioni.major_axis_length
+                ari_orien=regioni.orientation
                 ari_eccentricity=regioni.eccentricity
-                a1=ari_centriod[0];
-                b1=ari_centriod[1];
-                a2=a1+ari_diameter*sp.cos(ari_orien);
-                b2=b1+ari_diameter*sp.sin(ari_orien);
+
+                a1=ari_centriod[0]
+                b1=ari_centriod[1]
+                a2=a1 + 0.5*ari_diameter*sp.cos(ari_orien)
+                b2=b1 + 0.5*ari_diameter*sp.sin(ari_orien)
+                
                 if round(b2)>=len(lon):
                     b2=b2-len(lon);
                 if round(a2)>=len(lat):
                     a2=a2-len(lat)
-                lat1=lat[round(a1)];
-                lon1=lon[round(b1)]-180;
-                lat2=lat[round(a2)];
-                lon2=lon[round(b2)]-180;
-                ari_lenth=distance((lat1,lon1),(lat2,lon2)).km 
+                    
+                lat1=lat[round(a1)]
+                lon1=lon[round(b1)]
+                lat2=lat[round(a2)]
+                lon2=lon[round(b2)]
+                
+                ari_lenth = 2 * distance((lat1,lon1),(lat2,lon2)).km
+                
                 if ari_lenth<1500:
                     ar_timei[ari_grid[:,0],ari_grid[:,1]]=0
                 if ari_eccentricity<0.866:
@@ -106,4 +111,4 @@ def AR_detection_for_exp(exp):
         print(exp,Time_year)
 
 #%%ls
-AR_detection_for_exp('EXP0_3')
+AR_detection_for_exp('XXX')
